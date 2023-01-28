@@ -1,34 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useCat } from './hooks/cats.hooks';
+import { useInput } from './hooks/inputs.hooks';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { value, handleOnChange } = useInput();
+  const { catUrl, handleGetCats, handleGetFactCat } = useCat();
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
-}
+    <main>
+      <h1>Generate Random Cat Image With Custom Text!</h1>
+      <input value={value} onChange={handleOnChange} type="text" />
+      <button onClick={(e) => handleGetCats(value)} type="submit">
+        Kitty Time!
+      </button>
+      <span>--OR--</span>
+      <button onClick={(e) => handleGetFactCat()}>Generate random cat with a fact</button>
+      {catUrl && (
+        <img width={500} src={catUrl} alt="random cat with custom text from cataas.com api" />
+      )}
+    </main>
+  );
+};
 
-export default App
+export default App;
