@@ -6,12 +6,12 @@ const App = () => {
   const { catUrl, isLoading, handleGetCats, handleGetFactCat } = useCat();
   return (
     <main className="flex flex-col items-center">
-      <div className="w-1/2">
+      <div className="w-[90vw] lg:w-1/2">
         <h1 className="text-3xl my-5 text-center ">Generate Random Cat Image With Custom Text</h1>
         <section className="flex flex-col items-center">
-          <div>
+          <div className='flex flex-col lg:flex-row'>
             <input
-              className="input input-primary"
+              className="input input-primary my-6 lg:my-0"
               value={value}
               onChange={handleOnChange}
               placeholder="Enter your sentence"
@@ -35,7 +35,7 @@ const App = () => {
             <progress className="progress progress-secondary"></progress>
           ) : (
             <img
-              className="max-w-[700px] max-h-[700px]"
+              className="max-w-[300px] lg:max-w-[700px] lg:max-h-[700px]"
               src={catUrl}
               alt="random cat with custom text from cataas.com api"
             />
